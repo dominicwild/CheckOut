@@ -2,6 +2,7 @@ package com.checkout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class CheckoutTest {
 		Checkout checkout = new Checkout();
 
 		List<CheckoutItem> items = new ArrayList<>();
-		int total = checkout.totalOf(items);
+		BigDecimal total = checkout.totalOf(items);
 
-		assertEquals(0, total);
+		assertEquals(BigDecimal.ZERO, total);
 	}
 
 	@ParameterizedTest
@@ -26,13 +27,27 @@ public class CheckoutTest {
 	void checkout_with_one_item_returns_cost_of_that_item(CheckoutItemType itemType) {
 		Checkout checkout = new Checkout();
 
-		List<CheckoutItem> items = new ArrayList<>();
-		CheckoutItem item = itemType.newItem();
-		items.add(item);
-		int total = checkout.totalOf(items);
+		List<CheckoutItem> items = List.of(itemType.newItem());
+		BigDecimal total = checkout.totalOf(items);
 
-		int expectedTotal = item.getPrice();
+		BigDecimal expectedTotal = items.get(0).getPrice();
 		assertEquals(expectedTotal, total);
+	}
+
+	@Test
+	void checkout_with_two_items_returns_total_cost_of_both_items() {
+		Checkout checkout = new Checkout();
+		double priceOfItem1 = 30.5;
+		double priceOfItem2 = 70.5;
+
+		List<CheckoutItem> items = List.of(
+				new CheckoutItem(1, "Item 1", priceOfItem1),
+				new CheckoutItem(2, "Item 2", priceOfItem2));
+
+		BigDecimal checkoutTotal = checkout.totalOf(items);
+
+		BigDecimal expectedTotal = BigDecimal.valueOf(priceOfItem1 + priceOfItem2);
+		assertEquals(expectedTotal, checkoutTotal);
 	}
 
 }

@@ -1,11 +1,14 @@
 package com.checkout;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Checkout {
 
-    public int totalOf(List<CheckoutItem> items) {
-        return 0;
+    public BigDecimal totalOf(List<CheckoutItem> items) {
+        return items.stream()
+                .map(CheckoutItem::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-    
+
 }
