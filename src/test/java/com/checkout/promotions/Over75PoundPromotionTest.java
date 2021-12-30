@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.checkout.CheckoutItem;
 import com.fixture.CheckoutItemFixture;
-import com.promotions.Over75PoundPromotion;
+import com.promotions.types.Over75PoundPromotion;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

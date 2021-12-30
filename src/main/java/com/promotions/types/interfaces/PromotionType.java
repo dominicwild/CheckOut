@@ -1,4 +1,4 @@
-package com.promotions.interfaces;
+package com.promotions.types.interfaces;
 
 import com.promotions.Promotion;
 

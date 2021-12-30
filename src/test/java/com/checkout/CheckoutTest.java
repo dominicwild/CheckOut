@@ -8,8 +8,7 @@ import java.util.List;
 
 import com.fixture.CheckoutItemFixture;
 import com.mock.TestPromotion;
-import com.promotions.CheckoutPromotion;
-import com.promotions.interfaces.PromotionType;
+import com.promotions.types.interfaces.PromotionType;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

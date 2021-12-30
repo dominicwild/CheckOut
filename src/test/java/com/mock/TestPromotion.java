@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.checkout.CheckoutItem;
 import com.promotions.Promotion;
-import com.promotions.interfaces.PromotionType;
+import com.promotions.types.interfaces.PromotionType;
 
 public class TestPromotion implements Promotion, PromotionType {
 

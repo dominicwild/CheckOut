@@ -1,4 +1,4 @@
-package com.promotions;
+package com.promotions.types;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.checkout.Checkout;
 import com.checkout.CheckoutItem;
+import com.promotions.Promotion;
 
 public class Over75PoundPromotion implements Promotion {
 
