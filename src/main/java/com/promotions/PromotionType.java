@@ -10,7 +10,7 @@ public enum PromotionType {
     }
 
     public Promotion getPromotion() {
-        return null;
+        return promotion;
     }
 
 }
