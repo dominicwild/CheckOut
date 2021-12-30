@@ -1,14 +1,20 @@
 package com.checkout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.quicktheories.generators.SourceDSL.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.quicktheories.QuickTheory;
+import org.quicktheories.core.Gen;
+import org.quicktheories.generators.Generate;
+import org.quicktheories.generators.SourceDSL;
 
 public class CheckoutTest {
 
@@ -48,6 +54,46 @@ public class CheckoutTest {
 
 		BigDecimal expectedTotal = BigDecimal.valueOf(priceOfItem1 + priceOfItem2);
 		assertEquals(expectedTotal, checkoutTotal);
+	}
+
+	@Test
+	void checkout_with_multiple_items_returns_sum() {
+		QuickTheory.qt().forAll(randomItems())
+				.check(itemsArray -> {
+					Checkout checkout = new Checkout();
+					List<CheckoutItem> items = Arrays.asList(itemsArray);
+					BigDecimal total = checkout.totalOf(Arrays.asList(itemsArray));
+					BigDecimal expectedTotal = items.stream()
+							.map(CheckoutItem::getPrice)
+							.reduce(BigDecimal.ZERO, BigDecimal::add);
+					return total.equals(expectedTotal);
+				});
+	}
+
+	public static Gen<CheckoutItem[]> randomItems() {
+		return arrays().ofClass(randomItem(), CheckoutItem.class).withLengthBetween(1, 1000);
+	}
+
+	public static Gen<CheckoutItem> randomItem() {
+		return randomIds().zip(randomNames(), randomPrices(), (id, name, price) -> new CheckoutItem(id, name, price));
+	}
+
+	private static Gen<BigDecimal> randomPrices() {
+		return bigDecimals().ofBytes(8).withScale(2).map(price -> {
+			if (price.compareTo(BigDecimal.ZERO) > 0) {
+				return price;
+			} else {
+				return price.negate();
+			}
+		});
+	}
+
+	private static Gen<String> randomNames() {
+		return strings().basicLatinAlphabet().ofLengthBetween(1, 100);
+	}
+
+	private static Gen<Integer> randomIds() {
+		return integers().allPositive();
 	}
 
 }

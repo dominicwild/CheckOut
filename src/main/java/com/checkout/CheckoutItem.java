@@ -14,6 +14,12 @@ public class CheckoutItem {
         this.price = BigDecimal.valueOf(amount);
     }
 
+    public CheckoutItem(Integer id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
