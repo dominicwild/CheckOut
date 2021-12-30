@@ -18,7 +18,7 @@ public enum CheckoutItemType {
     }
 
     public CheckoutItem ofQuantity(int quantity) {
-        return new CheckoutItem(id, name, amount);
+        return new CheckoutItem(id, name, amount).quantity(quantity);
     }
 
 }

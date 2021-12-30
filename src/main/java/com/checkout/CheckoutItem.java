@@ -7,6 +7,7 @@ public class CheckoutItem {
     private int id;
     private String name;
     private BigDecimal price;
+    private int quantity = 1;
 
     public CheckoutItem(int id, String name, double amount) {
         this.id = id;
@@ -16,6 +17,19 @@ public class CheckoutItem {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public Object getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public CheckoutItem quantity(int quantity) {
+        this.quantity = quantity;
+        return this;
     }
 
 }
