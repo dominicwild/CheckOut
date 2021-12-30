@@ -6,11 +6,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.checkout.fixture.CheckoutItemFixture;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-public class CheckoutTest {
+class CheckoutTest {
 
 	@Test
 	void checkout_with_zero_items_has_zero_total() {
@@ -46,7 +48,21 @@ public class CheckoutTest {
 
 		BigDecimal checkoutTotal = checkout.totalOf(items);
 
-		BigDecimal expectedTotal = BigDecimal.valueOf(priceOfItem1 + priceOfItem2);
+		BigDecimal expectedTotal = BigDecimal.valueOf(101.0);
+		assertEquals(expectedTotal, checkoutTotal);
+	}
+
+	@Test
+	void checkout_with_multiple_items_returns_sum() {
+		int numberOfItems = 100;
+		List<CheckoutItem> items = CheckoutItemFixture.generateRandomItems(numberOfItems);
+
+		Checkout checkout = new Checkout();
+		BigDecimal checkoutTotal = checkout.totalOf(items);
+
+		BigDecimal expectedTotal = items.stream()
+				.map(CheckoutItem::getPrice)
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
 		assertEquals(expectedTotal, checkoutTotal);
 	}
 
