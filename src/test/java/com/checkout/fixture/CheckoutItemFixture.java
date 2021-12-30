@@ -29,4 +29,8 @@ public class CheckoutItemFixture {
         return new CheckoutItem(randomId, "Item" + randomId, randomPrice.doubleValue());
     }
 
+    public static CheckoutItem ofPrice(double priceOfItem) {
+        return new CheckoutItem(1, "Item 1", priceOfItem);
+    }
+
 }
