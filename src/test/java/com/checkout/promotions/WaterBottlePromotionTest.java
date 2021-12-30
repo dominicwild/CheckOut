@@ -29,7 +29,7 @@ class WaterBottlePromotionTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+	@ValueSource(ints = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 100 })
 	void two_or_more_water_bottles_are_given_discount_on_each_water_bottle(int quantity) {
 		CheckoutItem waterBottles = WATER_BOTTLE.ofQuantity(quantity);
 		List<CheckoutItem> items = List.of(waterBottles);

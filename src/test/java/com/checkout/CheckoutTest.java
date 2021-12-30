@@ -64,6 +64,17 @@ class CheckoutTest {
 		assertEquals(expectedTotal, checkoutTotal);
 	}
 
+	@Test
+	void check_out_with_items_with_quantity_greater_than_one_returns_total_cost_of_each_item() {
+		List<CheckoutItem> items = List.of(
+				CheckoutItemFixture.ofPrice(1.00).quantity(4),
+				CheckoutItemFixture.ofPrice(2.00).quantity(2));
+		
+		BigDecimal checkoutTotal = Checkout.totalPriceOf(items);
+		BigDecimal expectedTotal = BigDecimal.valueOf(8.00);
+		assertEquals(expectedTotal, checkoutTotal);
+	}
+
 	@ParameterizedTest
 	@ValueSource(ints = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
 	void checkout_applies_discounts_from_promotions_off_the_total(int numberOfPromotions) {
@@ -73,7 +84,7 @@ class CheckoutTest {
 
 		double promotionDiscount = 1.00;
 		PromotionType testPromotion = new TestPromotion(BigDecimal.valueOf(promotionDiscount));
-		
+
 		Checkout checkout = new Checkout();
 		for (int i = 0; i < numberOfPromotions; i++) {
 			checkout.applyPromotion(testPromotion);

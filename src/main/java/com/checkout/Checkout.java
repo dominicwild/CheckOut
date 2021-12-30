@@ -13,8 +13,16 @@ public class Checkout {
 
 	public static BigDecimal totalPriceOf(List<CheckoutItem> items) {
 		return items.stream()
-				.map(CheckoutItem::getPrice)
+				.map(item -> priceOf(item).multiply(quantityOf(item)))
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+
+	private static BigDecimal priceOf(CheckoutItem item) {
+		return item.getPrice();
+	}
+
+	private static BigDecimal quantityOf(CheckoutItem item) {
+		return new BigDecimal(item.getQuantity());
 	}
 
 	public void applyPromotion(PromotionType promotionType) {
