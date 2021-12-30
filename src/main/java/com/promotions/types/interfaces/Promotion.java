@@ -1,4 +1,4 @@
-package com.promotions;
+package com.promotions.types.interfaces;
 
 import java.math.BigDecimal;
 import java.util.List;

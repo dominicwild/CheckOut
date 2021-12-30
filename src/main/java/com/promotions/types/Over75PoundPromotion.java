@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.checkout.Checkout;
 import com.checkout.CheckoutItem;
-import com.promotions.Promotion;
+import com.promotions.types.interfaces.Promotion;
 
 public class Over75PoundPromotion implements Promotion {
 

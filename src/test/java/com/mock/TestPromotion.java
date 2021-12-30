@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.checkout.CheckoutItem;
-import com.promotions.Promotion;
+import com.promotions.types.interfaces.Promotion;
 import com.promotions.types.interfaces.PromotionType;
 
 public class TestPromotion implements Promotion, PromotionType {

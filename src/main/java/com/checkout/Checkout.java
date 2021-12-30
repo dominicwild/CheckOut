@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.promotions.Promotion;
+import com.promotions.types.interfaces.Promotion;
 import com.promotions.types.interfaces.PromotionType;
 
 public class Checkout {
