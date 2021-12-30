@@ -6,12 +6,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.checkout.fixture.CheckoutItemFixture;
-import com.promotions.PromotionType;
+import com.fixture.CheckoutItemFixture;
+import com.mock.TestPromotion;
+import com.promotions.CheckoutPromotion;
+import com.promotions.interfaces.PromotionType;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CheckoutTest {
 
@@ -62,21 +65,25 @@ class CheckoutTest {
 		assertEquals(expectedTotal, checkoutTotal);
 	}
 
-	@Test
-	void checkout_with_over_75_pound_promotion_applied_returns_10_percent_off() {
-		double priceOfItem1 = 75.00;
-		double priceOfItem2 = 0.01;
+	@ParameterizedTest
+	@ValueSource(ints = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+	void checkout_applies_discounts_from_promotions_off_the_total(int numberOfPromotions) {
+		double priceOfItem1 = 10.00;
 
-		List<CheckoutItem> items = List.of(
-				CheckoutItemFixture.ofPrice(priceOfItem1),
-				CheckoutItemFixture.ofPrice(priceOfItem2));
+		List<CheckoutItem> items = List.of(CheckoutItemFixture.ofPrice(priceOfItem1));
 
+		double promotionDiscount = 1.00;
+		PromotionType testPromotion = new TestPromotion(BigDecimal.valueOf(promotionDiscount));
+		
 		Checkout checkout = new Checkout();
-		checkout.applyPromotion(PromotionType.OVER_75_POUND);
+		for (int i = 0; i < numberOfPromotions; i++) {
+			checkout.applyPromotion(testPromotion);
+		}
+
 		BigDecimal checkoutTotal = checkout.totalPriceWithPromotionsOf(items);
 
-		double tenPercentOffExpectedTotal = 67.51;
-		BigDecimal expectedDiscountedTotal = new BigDecimal(tenPercentOffExpectedTotal + "");
+		double expectedDiscountPriceTotal = priceOfItem1 - (numberOfPromotions * promotionDiscount);
+		BigDecimal expectedDiscountedTotal = new BigDecimal(expectedDiscountPriceTotal + "");
 		assertEquals(expectedDiscountedTotal, checkoutTotal);
 	}
 }

@@ -1,11 +1,13 @@
 package com.promotions;
 
-public enum PromotionType {
+import com.promotions.interfaces.PromotionType;
+
+public enum CheckoutPromotion implements PromotionType {
     OVER_75_POUND(new Over75PoundPromotion());
 
     private Promotion promotion;
 
-    PromotionType(Promotion promotion) {
+    CheckoutPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
 

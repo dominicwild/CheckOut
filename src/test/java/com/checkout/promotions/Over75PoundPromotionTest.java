@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.checkout.CheckoutItem;
-import com.checkout.fixture.CheckoutItemFixture;
+import com.fixture.CheckoutItemFixture;
 import com.promotions.Over75PoundPromotion;
 
 import org.junit.jupiter.api.Test;
@@ -37,6 +37,6 @@ class Over75PoundPromotionTest {
 
         BigDecimal tenPercentOfPrice = BigDecimal.valueOf(7.50);
         assertBigDecimalEqual(tenPercentOfPrice, discount);
-   }
+    }
 
 }

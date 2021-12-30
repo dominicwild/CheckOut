@@ -1,4 +1,4 @@
-package com.checkout.fixture;
+package com.fixture;
 
 import static java.lang.Math.abs;
 import static java.util.stream.Collectors.toList;
