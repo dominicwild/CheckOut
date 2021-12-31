@@ -28,8 +28,38 @@ class CheckoutAcceptanceTests {
 				STICKER_SET.ofQuantity(1));
 
 		BigDecimal totalPrice = checkout.totalPriceWithPromotionsOf(items);
-		
+
 		BigDecimal expectedPrice = BigDecimal.valueOf(103.47);
+		assertEquals(expectedPrice, totalPrice);
+	}
+
+	@Test
+	void checkout_with_water_bottle_promotion_and_three_water_bottles() {
+		Checkout checkout = new Checkout();
+		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);
+		checkout.applyPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
+
+		List<CheckoutItem> items = List.of(WATER_BOTTLE.ofQuantity(3));
+
+		BigDecimal totalPrice = checkout.totalPriceWithPromotionsOf(items);
+
+		BigDecimal expectedPrice = BigDecimal.valueOf(68.97);
+		assertEquals(expectedPrice, totalPrice);
+	}
+
+	@Test
+	void checkout_with_over_75_pound_promotion_and_two_hoodies_and_a_sticker_set() {
+		Checkout checkout = new Checkout();
+		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);
+		checkout.applyPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
+
+		List<CheckoutItem> items = List.of(
+				HOODIE.ofQuantity(2),
+				STICKER_SET.ofQuantity(1));
+
+		BigDecimal totalPrice = checkout.totalPriceWithPromotionsOf(items);
+
+		BigDecimal expectedPrice = BigDecimal.valueOf(120.59);
 		assertEquals(expectedPrice, totalPrice);
 	}
 
