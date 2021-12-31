@@ -11,16 +11,12 @@ import java.util.List;
 import com.checkout.Checkout;
 import com.checkout.CheckoutItem;
 import com.promotions.CheckoutPromotion;
-import com.promotions.types.Over75PoundPromotion;
-import com.promotions.types.WaterBottlePromotion;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class CheckoutAcceptanceTests {
 
 	@Test
-	@Disabled("This test is not yet implemented")
 	void checkout_with_water_bottle_promotion_and_over_75_pound_promotion() {
 		Checkout checkout = new Checkout();
 		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);

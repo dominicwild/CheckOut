@@ -96,4 +96,25 @@ class CheckoutTest {
 		BigDecimal expectedDiscountedTotal = new BigDecimal(expectedDiscountPriceTotal + "");
 		assertEquals(expectedDiscountedTotal, checkoutTotal);
 	}
+
+	@Test
+	void checkout_adjust_prices_for_promotions(){
+		double priceOfItem1 = 10.00;
+		double priceOfItem2 = 20.00;
+		double priceOfItem3 = 30.00;
+
+		List<CheckoutItem> items = List.of(
+				CheckoutItemFixture.ofPrice(priceOfItem1),
+				CheckoutItemFixture.ofPrice(priceOfItem2),
+				CheckoutItemFixture.ofPrice(priceOfItem3));
+
+		Checkout checkout = new Checkout();
+		BigDecimal allItemPrices = BigDecimal.valueOf(1.00);
+		checkout.applyPromotion(new TestSetPricePromotion(allItemPrices));
+
+		BigDecimal checkoutTotal = checkout.totalPriceWithPromotionsOf(items);
+
+		BigDecimal expectedDiscountedTotal = BigDecimal.valueOf(3.0);
+		assertEquals(expectedDiscountedTotal, checkoutTotal);
+	}
 }

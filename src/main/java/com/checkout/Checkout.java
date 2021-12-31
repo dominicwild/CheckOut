@@ -30,12 +30,17 @@ public class Checkout {
 	}
 
 	public BigDecimal totalPriceWithPromotionsOf(List<CheckoutItem> items) {
+		adjustPricesByPromotionsFor(items);
 		BigDecimal totalDiscount = totalDiscountFor(items);
 		BigDecimal totalPrice = totalPriceOf(items);
 		return totalPrice.add(totalDiscount);
 	}
 
-	private BigDecimal totalDiscountFor(List<CheckoutItem> items) {
+	private void adjustPricesByPromotionsFor(List<CheckoutItem> items) {
+		promotions.forEach(promotion -> promotion.adjustPriceOf(items));
+    }
+
+    private BigDecimal totalDiscountFor(List<CheckoutItem> items) {
 		return promotions.stream()
 				.map(promotion -> promotion.discountFor(items))
 				.reduce(BigDecimal.ZERO, BigDecimal::add).negate();
