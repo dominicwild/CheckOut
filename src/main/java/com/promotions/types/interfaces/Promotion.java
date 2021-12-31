@@ -7,6 +7,11 @@ import com.checkout.CheckoutItem;
 
 public interface Promotion {
 
-    BigDecimal discountFor(List<CheckoutItem> items);
+    default BigDecimal discountFor(List<CheckoutItem> items) {
+        return BigDecimal.ZERO;
+    }
+
+    default void adjustPriceOf(List<CheckoutItem> items) {
+    }
 
 }

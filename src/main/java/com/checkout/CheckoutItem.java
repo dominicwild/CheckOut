@@ -32,4 +32,8 @@ public class CheckoutItem {
         return this;
     }
 
+    public void setPrice(BigDecimal reducedPrice) {
+        this.price = reducedPrice;
+    }
+
 }

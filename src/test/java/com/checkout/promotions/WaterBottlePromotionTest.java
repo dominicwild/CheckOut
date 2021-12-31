@@ -1,7 +1,7 @@
 package com.checkout.promotions;
 
 import static com.checkout.CheckoutItemType.WATER_BOTTLE;
-import static com.promotions.types.WaterBottlePromotion.PRICE_REDUCTION;
+import static com.promotions.types.WaterBottlePromotion.REDUCED_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
@@ -23,23 +23,23 @@ class WaterBottlePromotionTest {
 
 		WaterBottlePromotion promotion = new WaterBottlePromotion();
 
-		BigDecimal discount = promotion.discountFor(items);
-		BigDecimal zeroDiscount = BigDecimal.ZERO;
-		assertEquals(zeroDiscount, discount);
+		BigDecimal priceBeforePromotion = waterBottles.getPrice();
+		promotion.adjustPriceOf(items);
+
+		BigDecimal priceAfterPromotion = waterBottles.getPrice();
+		assertEquals(priceAfterPromotion, priceBeforePromotion);
 	}
 
 	@ParameterizedTest
 	@ValueSource(ints = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 100 })
-	void two_or_more_water_bottles_are_given_discount_on_each_water_bottle(int quantity) {
+	void two_or_more_water_bottles_are_set_to_reduced_price(int quantity) {
 		CheckoutItem waterBottles = WATER_BOTTLE.ofQuantity(quantity);
 		List<CheckoutItem> items = List.of(waterBottles);
 
 		WaterBottlePromotion promotion = new WaterBottlePromotion();
+		promotion.adjustPriceOf(items);
 
-		BigDecimal discount = promotion.discountFor(items);
-		BigDecimal numberOfWaterBottles = BigDecimal.valueOf(quantity);
-		BigDecimal expectedDiscount = numberOfWaterBottles.multiply(PRICE_REDUCTION);
-		assertEquals(expectedDiscount, discount);
+		assertEquals(REDUCED_PRICE, waterBottles.getPrice());
 	}
 
 }
