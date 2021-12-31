@@ -12,7 +12,6 @@ import com.promotions.types.interfaces.Promotion;
 public class WaterBottlePromotion implements Promotion {
 
 	private static final String QUALIFYING_PRODUCT_NAME = "Water Bottle";
-	public static final BigDecimal PRICE_REDUCTION = BigDecimal.valueOf(1.96);
 	public static final BigDecimal REDUCED_PRICE = BigDecimal.valueOf(22.99);
 
 	@Override
@@ -41,6 +40,7 @@ public class WaterBottlePromotion implements Promotion {
 		return item -> item.getName().equals(QUALIFYING_PRODUCT_NAME);
 	}
 
+	@Override
 	public void adjustPriceOf(List<CheckoutItem> items) {
 		if (numberOfWaterBottlesFrom(items) >= 2) {
 			waterBottlesFrom(items).forEach(waterBottle -> waterBottle.setPrice(REDUCED_PRICE));
