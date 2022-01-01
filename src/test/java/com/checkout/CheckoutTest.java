@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fixture.CheckoutItemFixture;
+import com.fixture.CheckoutItemType;
 import com.mock.TestPromotion;
+import com.mock.TestSetPricePromotion;
 import com.promotions.types.interfaces.PromotionType;
 
 import org.junit.jupiter.api.Test;

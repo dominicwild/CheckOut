@@ -1,4 +1,6 @@
-package com.checkout;
+package com.fixture;
+
+import com.checkout.CheckoutItem;
 
 public enum CheckoutItemType {
     WATER_BOTTLE(1, "Water Bottle", 24.95), HOODIE(2, "Hoodie", 65), STICKER_SET(3, "Sticker Set", 3.99);

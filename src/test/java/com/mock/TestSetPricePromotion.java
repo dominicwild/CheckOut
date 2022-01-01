@@ -1,8 +1,9 @@
-package com.checkout;
+package com.mock;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.checkout.CheckoutItem;
 import com.promotions.types.interfaces.Promotion;
 import com.promotions.types.interfaces.PromotionType;
 

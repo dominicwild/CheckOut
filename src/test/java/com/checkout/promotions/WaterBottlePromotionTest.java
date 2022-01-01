@@ -1,6 +1,6 @@
 package com.checkout.promotions;
 
-import static com.checkout.CheckoutItemType.WATER_BOTTLE;
+import static com.fixture.CheckoutItemType.WATER_BOTTLE;
 import static com.promotions.types.WaterBottlePromotion.REDUCED_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

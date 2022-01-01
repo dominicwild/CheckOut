@@ -1,8 +1,8 @@
 package com.acceptance;
 
-import static com.checkout.CheckoutItemType.HOODIE;
-import static com.checkout.CheckoutItemType.STICKER_SET;
-import static com.checkout.CheckoutItemType.WATER_BOTTLE;
+import static com.fixture.CheckoutItemType.HOODIE;
+import static com.fixture.CheckoutItemType.STICKER_SET;
+import static com.fixture.CheckoutItemType.WATER_BOTTLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
