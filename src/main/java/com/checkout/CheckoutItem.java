@@ -19,7 +19,7 @@ public class CheckoutItem {
         return price;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
