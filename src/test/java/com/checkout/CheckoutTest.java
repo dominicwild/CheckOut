@@ -89,7 +89,7 @@ class CheckoutTest {
 
 		Checkout checkout = new Checkout();
 		for (int i = 0; i < numberOfPromotions; i++) {
-			checkout.applyPromotion(testPromotion);
+			checkout.addPromotion(testPromotion);
 		}
 
 		BigDecimal checkoutTotal = checkout.totalPriceWithPromotionsOf(items);
@@ -112,7 +112,7 @@ class CheckoutTest {
 
 		Checkout checkout = new Checkout();
 		BigDecimal allItemPrices = BigDecimal.valueOf(1.00);
-		checkout.applyPromotion(new TestSetPricePromotion(allItemPrices));
+		checkout.addPromotion(new TestSetPricePromotion(allItemPrices));
 
 		BigDecimal checkoutTotal = checkout.totalPriceWithPromotionsOf(items);
 

@@ -25,7 +25,7 @@ public class Checkout {
 		return new BigDecimal(item.getQuantity());
 	}
 
-	public void applyPromotion(PromotionType promotionType) {
+	public void addPromotion(PromotionType promotionType) {
 		promotions.add(promotionType.getPromotion());
 	}
 
@@ -33,6 +33,7 @@ public class Checkout {
 		adjustPricesByPromotionsFor(items);
 		BigDecimal totalDiscount = totalDiscountFor(items);
 		BigDecimal totalPrice = totalPriceOf(items);
+
 		return totalPrice.add(totalDiscount);
 	}
 

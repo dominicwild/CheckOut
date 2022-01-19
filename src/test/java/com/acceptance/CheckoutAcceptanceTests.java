@@ -19,8 +19,8 @@ class CheckoutAcceptanceTests {
 	@Test
 	void checkout_with_water_bottle_promotion_and_over_75_pound_promotion() {
 		Checkout checkout = new Checkout();
-		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);
-		checkout.applyPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
+		checkout.addPromotion(CheckoutPromotion.OVER_75_POUND);
+		checkout.addPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
 
 		List<CheckoutItem> items = List.of(
 				WATER_BOTTLE.ofQuantity(2),
@@ -36,8 +36,8 @@ class CheckoutAcceptanceTests {
 	@Test
 	void checkout_with_water_bottle_promotion_and_three_water_bottles() {
 		Checkout checkout = new Checkout();
-		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);
-		checkout.applyPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
+		checkout.addPromotion(CheckoutPromotion.OVER_75_POUND);
+		checkout.addPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
 
 		List<CheckoutItem> items = List.of(WATER_BOTTLE.ofQuantity(3));
 
@@ -50,8 +50,8 @@ class CheckoutAcceptanceTests {
 	@Test
 	void checkout_with_over_75_pound_promotion_and_two_hoodies_and_a_sticker_set() {
 		Checkout checkout = new Checkout();
-		checkout.applyPromotion(CheckoutPromotion.OVER_75_POUND);
-		checkout.applyPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
+		checkout.addPromotion(CheckoutPromotion.OVER_75_POUND);
+		checkout.addPromotion(CheckoutPromotion.WATER_BOTTLE_PROMOTION);
 
 		List<CheckoutItem> items = List.of(
 				HOODIE.ofQuantity(2),
