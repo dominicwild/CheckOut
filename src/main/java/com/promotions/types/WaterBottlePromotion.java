@@ -15,14 +15,11 @@ public class WaterBottlePromotion implements Promotion {
 	public static final BigDecimal REDUCED_PRICE = BigDecimal.valueOf(22.99);
 
 	@Override
-	public BigDecimal discountFor(List<CheckoutItem> items) {
+	public void adjustPriceOf(List<CheckoutItem> items) {
 		if (numberOfWaterBottlesFrom(items) >= 2) {
 			waterBottlesFrom(items).forEach(waterBottle -> waterBottle.setPrice(REDUCED_PRICE));
 		}
-
-		return BigDecimal.ZERO;
 	}
-
 	private Iterable<CheckoutItem> waterBottlesFrom(List<CheckoutItem> items) {
 		return items.stream()
 				.filter(isAWaterBottle())
@@ -40,11 +37,5 @@ public class WaterBottlePromotion implements Promotion {
 		return item -> item.getName().equals(QUALIFYING_PRODUCT_NAME);
 	}
 
-	@Override
-	public void adjustPriceOf(List<CheckoutItem> items) {
-		if (numberOfWaterBottlesFrom(items) >= 2) {
-			waterBottlesFrom(items).forEach(waterBottle -> waterBottle.setPrice(REDUCED_PRICE));
-		}
-	}
 
 }
