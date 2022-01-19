@@ -30,7 +30,6 @@ class CheckoutTest {
 	@ParameterizedTest
 	@EnumSource
 	void checkout_with_one_item_returns_cost_of_that_item(CheckoutItemType itemType) {
-
 		List<CheckoutItem> items = List.of(itemType.newItem());
 		BigDecimal total = Checkout.totalPriceOf(items);
 
