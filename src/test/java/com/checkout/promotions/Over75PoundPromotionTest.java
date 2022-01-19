@@ -1,6 +1,6 @@
 package com.checkout.promotions;
 
-import static com.checkout.assertions.CustomAssertions.assertBigDecimalEqual;
+import static com.assertions.CustomAssertions.assertBigDecimalEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;

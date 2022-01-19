@@ -1,4 +1,4 @@
-package com.checkout.assertions;
+package com.assertions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
